@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Facet — The AI Operating System for Gem Businesses</title>
+  <meta name="description" content="Facet runs your entire gem business from WhatsApp. Inventory, CRM, invoicing, dealer networks — powered by Iris, your AI gem intelligence companion." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #080809;
+      --surface: #0f0f12;
+      --surface2: #14141a;
+      --surface3: #1a1a22;
+      --border: rgba(180,180,210,0.08);
+      --border-bright: rgba(180,180,210,0.22);
+      --platinum: #c8c8d8;
+      --platinum-light: #e8e8f4;
+      --emerald: #10b981;
+      --emerald-dim: rgba(16,185,129,0.15);
+      --sapphire: #3b82f6;
+      --ruby: #ef4444;
+      --text: #f0f0f6;
+      --muted: #7878a0;
+      --dim: #404060;
+    }
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 64px;
+      background: rgba(8,8,9,0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 600; letter-spacing: 0.02em;
+      color: var(--platinum-light);
+    }
+    .facet-mark {
+      width: 28px; height: 28px; position: relative;
+    }
+    .facet-mark svg { width: 100%; height: 100%; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      font-size: 13px; color: var(--muted); text-decoration: none;
+      transition: color 0.2s; font-weight: 400;
+    }
+    .nav-links a:hover { color: var(--platinum); }
+    .nav-cta {
+      background: var(--platinum-light); color: #080809;
+      padding: 8px 22px; border-radius: 6px;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-canvas {
+      position: absolute; inset: 0; pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute; top: 15%; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse, rgba(180,180,210,0.04) 0%, transparent 70%);
+    }
+    .crystal-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(180,180,210,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180,180,210,0.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    /* Animated floating crystal facets */
+    .float-crystal {
+      position: absolute;
+      opacity: 0.04;
+      animation: floatCrystal 12s ease-in-out infinite;
+    }
+    .float-crystal:nth-child(1) { top: 15%; left: 8%; animation-delay: 0s; }
+    .float-crystal:nth-child(2) { top: 60%; left: 5%; animation-delay: -3s; }
+    .float-crystal:nth-child(3) { top: 25%; right: 8%; animation-delay: -6s; }
+    .float-crystal:nth-child(4) { top: 70%; right: 10%; animation-delay: -9s; }
+    @keyframes floatCrystal {
+      0%,100% { transform: translateY(0) rotate(0deg); opacity: 0.04; }
+      50% { transform: translateY(-20px) rotate(10deg); opacity: 0.07; }
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(180,180,210,0.06); border: 1px solid var(--border-bright);
+      padding: 6px 18px; border-radius: 100px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      color: var(--platinum); text-transform: uppercase;
+      margin-bottom: 36px; position: relative; z-index: 1;
+    }
+    .hero-eyebrow-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 6px var(--emerald);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(44px, 6.5vw, 84px); font-weight: 700;
+      line-height: 1.06; letter-spacing: -0.01em;
+      position: relative; z-index: 1; max-width: 860px;
+      color: var(--platinum-light);
+    }
+    .hero h1 em { font-style: italic; color: #fff; }
+    .hero h1 .accent-line {
+      display: block;
+      background: linear-gradient(90deg, var(--platinum-light), var(--platinum), rgba(180,180,210,0.6));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 19px); color: var(--muted); font-weight: 300;
+      max-width: 560px; margin: 28px auto 0;
+      position: relative; z-index: 1; line-height: 1.75;
+    }
+    .hero-ctas {
+      display: flex; gap: 14px; margin-top: 44px;
+      flex-wrap: wrap; justify-content: center;
+      position: relative; z-index: 1;
+    }
+    .btn-primary {
+      background: var(--platinum-light); color: var(--bg);
+      padding: 14px 32px; border-radius: 8px;
+      font-size: 15px; font-weight: 700; text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex; align-items: center; gap: 8px;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200,200,220,0.18); }
+    .btn-secondary {
+      background: transparent; color: var(--platinum);
+      padding: 14px 32px; border-radius: 8px; border: 1px solid var(--border-bright);
+      font-size: 15px; font-weight: 500; text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--platinum); background: rgba(180,180,210,0.06); }
+
+    /* Big crystal SVG hero graphic */
+    .hero-crystal {
+      position: relative; z-index: 1; margin: 52px auto 0;
+      width: 140px; height: 160px;
+    }
+    .hero-crystal svg { width: 100%; height: 100%; }
+    @keyframes crystalShimmer {
+      0%,100% { filter: drop-shadow(0 0 20px rgba(180,180,220,0.25)); }
+      33% { filter: drop-shadow(0 0 30px rgba(16,185,129,0.2)) drop-shadow(0 0 20px rgba(180,180,220,0.15)); }
+      66% { filter: drop-shadow(0 0 30px rgba(59,130,246,0.2)) drop-shadow(0 0 20px rgba(180,180,220,0.15)); }
+    }
+    .hero-crystal svg { animation: crystalShimmer 5s ease-in-out infinite; }
+
+    /* Logos strip */
+    .logos-strip {
+      padding: 32px 24px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .logos-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+    .logos-label { font-size: 11px; color: var(--dim); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 24px; }
+    .logos-row { display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
+    .logo-item { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--dim); letter-spacing: 0.05em; }
+
+    /* ─── MARQUEE ─── */
+    .marquee-wrap { overflow: hidden; padding: 16px 0; background: var(--surface2); }
+    .marquee-track { display: flex; animation: marqueeScroll 28s linear infinite; white-space: nowrap; }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 0 28px; font-size: 11px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim);
+    }
+    .m-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--platinum); opacity: 0.4; }
+    @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* ─── SECTIONS ─── */
+    .section { padding: 88px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--emerald); margin-bottom: 16px;
+    }
+    .section-label::before {
+      content: ''; width: 20px; height: 1px; background: var(--emerald); opacity: 0.6;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 4vw, 52px); font-weight: 600; line-height: 1.15;
+      margin-bottom: 16px; max-width: 680px; color: var(--platinum-light);
+    }
+    .section-title em { font-style: italic; }
+    .section-title .em-pt { color: var(--platinum-light); }
+    .section-sub { color: var(--muted); font-size: 16px; max-width: 540px; line-height: 1.75; margin-bottom: 52px; }
+
+    /* ─── PROBLEM ─── */
+    .pain-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+    .pain-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 2px solid rgba(239,68,68,0.4);
+      border-radius: 12px; padding: 24px 22px;
+    }
+    .pain-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+    .pain-card p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+    .pain-tag {
+      display: inline-block; font-size: 10px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(239,68,68,0.8); margin-bottom: 10px;
+      background: rgba(239,68,68,0.08); padding: 2px 8px; border-radius: 4px;
+    }
+    .pain-icon { font-size: 24px; margin-bottom: 12px; display: block; }
+
+    /* ─── IRIS ─── */
+    .iris-wrap {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+      max-width: 1100px; margin: 0 auto; padding: 88px 24px;
+    }
+    .iris-card {
+      background: linear-gradient(160deg, var(--surface2), var(--bg));
+      border: 1px solid var(--border-bright); border-radius: 24px; padding: 44px;
+      position: relative; overflow: hidden;
+    }
+    .iris-card::after {
+      content: '';
+      position: absolute; top: -80px; right: -80px;
+      width: 240px; height: 240px;
+      background: radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .iris-gem {
+      width: 72px; height: 72px; border-radius: 20px;
+      background: linear-gradient(135deg, #1a2a2a 0%, #0a1a12 100%);
+      border: 1px solid rgba(16,185,129,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; margin-bottom: 22px;
+      box-shadow: 0 0 40px rgba(16,185,129,0.12);
+    }
+    .iris-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px; font-weight: 600; color: var(--platinum-light); margin-bottom: 4px;
+    }
+    .iris-title {
+      font-size: 11px; color: var(--emerald); letter-spacing: 0.14em;
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .iris-desc { font-size: 14px; color: var(--muted); line-height: 1.75; }
+    .iris-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .iris-tag {
+      padding: 4px 12px; border-radius: 100px; font-size: 11px; font-weight: 500;
+      background: rgba(180,180,210,0.07); border: 1px solid var(--border);
+      color: var(--platinum);
+    }
+    .iris-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 3.5vw, 48px); font-weight: 600; line-height: 1.2;
+      color: var(--platinum-light); margin-bottom: 18px;
+    }
+    .iris-text h2 em { font-style: italic; color: #fff; }
+    .iris-text p { color: var(--muted); font-size: 15px; line-height: 1.8; margin-bottom: 14px; }
+    .iris-quote {
+      margin-top: 24px; padding: 16px 20px;
+      background: var(--surface); border-left: 2px solid var(--emerald);
+      border-radius: 0 10px 10px 0;
+      font-size: 14px; color: var(--muted); font-style: italic; line-height: 1.7;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .hiw-bg { background: var(--surface); }
+    .hiw-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 52px; }
+    .hiw-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px 24px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .hiw-card:hover { border-color: var(--border-bright); transform: translateY(-4px); }
+    .step-num {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: rgba(180,180,210,0.06); border: 1px solid var(--border-bright);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace; font-size: 16px;
+      color: var(--platinum); margin-bottom: 20px;
+    }
+    .hiw-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 10px; color: var(--platinum-light); }
+    .hiw-card p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+    /* ─── PHONE MOCKUPS ─── */
+    .phones-section { padding: 88px 24px; }
+    .phones-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: center; margin-top: 0; }
+    .phone-outer {
+      display: flex; justify-content: center; align-items: flex-start;
+    }
+    .phone {
+      width: 290px;
+      background: #0c0c10;
+      border-radius: 44px;
+      border: 1.5px solid rgba(255,255,255,0.1);
+      overflow: hidden; position: relative;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04),
+                  inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .phone-notch {
+      width: 90px; height: 26px;
+      background: #0c0c10;
+      border-radius: 0 0 18px 18px;
+      margin: 0 auto;
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      z-index: 10;
+    }
+    .phone-screen { display: flex; flex-direction: column; height: 580px; overflow: hidden; }
+    .wa-header {
+      background: #1a1f27; padding: 10px 14px 8px;
+      display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+      padding-top: 34px; border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .wa-back { color: #53bdeb; font-size: 18px; margin-right: 2px; }
+    .wa-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: linear-gradient(135deg, #1a3a2a 0%, #0a1a12 100%);
+      border: 1px solid rgba(16,185,129,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; flex-shrink: 0;
+    }
+    .wa-name { font-size: 14px; font-weight: 600; color: #e9edef; }
+    .wa-status { font-size: 10px; color: #53bdeb; }
+    .wa-messages {
+      flex: 1; padding: 10px 10px; display: flex;
+      flex-direction: column; gap: 5px;
+      background: #0b1117; overflow: hidden;
+    }
+    .wa-msg {
+      max-width: 88%; font-size: 12px; line-height: 1.5;
+      padding: 7px 10px 5px; border-radius: 8px;
+    }
+    .wa-msg .wt { font-size: 9px; color: #8696a0; float: right; margin: 2px 0 0 8px; }
+    .wa-msg.user { background: #2a3f5a; align-self: flex-end; border-radius: 8px 8px 2px 8px; color: #e9edef; }
+    .wa-msg.iris { background: #1e222a; align-self: flex-start; border-radius: 8px 8px 8px 2px; color: #e9edef; }
+    .wa-msg.iris .iris-lbl { color: #6ee7b7; font-size: 11px; font-weight: 600; display: block; margin-bottom: 3px; }
+    .wa-input {
+      background: #1a1f27; padding: 8px 12px;
+      display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .wa-input-field {
+      flex: 1; background: #2a3040; border-radius: 18px;
+      padding: 7px 14px; font-size: 12px; color: #8696a0;
+    }
+    .phones-copy { padding: 20px 0; }
+    .phones-copy h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 3vw, 36px); font-weight: 600;
+      color: var(--platinum-light); margin-bottom: 10px; line-height: 1.25;
+    }
+    .phones-copy h3 em { font-style: italic; color: #fff; }
+    .phones-copy > p { color: var(--muted); font-size: 15px; line-height: 1.75; margin-bottom: 24px; }
+    .flist { display: flex; flex-direction: column; gap: 12px; }
+    .fitem {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 14px 16px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; transition: border-color 0.2s;
+    }
+    .fitem:hover { border-color: var(--border-bright); }
+    .fi-ico {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+    }
+    .fi-body h4 { font-size: 14px; font-weight: 600; margin-bottom: 3px; color: var(--platinum-light); }
+    .fi-body p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+    /* ─── DASHBOARD ─── */
+    .dash-section { padding: 88px 24px; background: var(--surface); }
+    .dash-frame {
+      max-width: 1000px; margin: 48px auto 0;
+      background: var(--bg); border: 1px solid var(--border-bright);
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 60px 120px rgba(0,0,0,0.6);
+    }
+    .dash-bar {
+      background: var(--surface2); padding: 11px 20px;
+      display: flex; align-items: center; gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .d-dots { display: flex; gap: 6px; }
+    .d-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .d-dot.r { background: #ff5f57; } .d-dot.y { background: #febc2e; } .d-dot.g { background: #28c840; }
+    .d-url {
+      flex: 1; background: rgba(255,255,255,0.04); border-radius: 6px;
+      padding: 4px 12px; font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--dim);
+    }
+    .d-live { font-size: 11px; color: var(--emerald); font-family: 'JetBrains Mono', monospace; }
+    .dash-body { display: grid; grid-template-columns: 190px 1fr; min-height: 420px; }
+    .dash-side {
+      background: rgba(0,0,0,0.4); border-right: 1px solid var(--border);
+      padding: 16px 0;
+    }
+    .d-logo {
+      padding: 10px 16px 18px;
+      font-family: 'Playfair Display', serif;
+      font-size: 17px; color: var(--platinum-light);
+      border-bottom: 1px solid var(--border); margin-bottom: 8px;
+    }
+    .d-nav { display: flex; align-items: center; gap: 10px; padding: 9px 16px; font-size: 13px; color: var(--muted); cursor: pointer; }
+    .d-nav.on { color: var(--emerald); background: rgba(16,185,129,0.07); }
+    .d-nav-ico { font-size: 15px; }
+    .dash-main { padding: 20px; }
+    .d-greeting { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--platinum-light); margin-bottom: 16px; }
+    .d-metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 18px; }
+    .d-metric {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 14px;
+    }
+    .d-metric-lbl { font-size: 10px; color: var(--dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+    .d-metric-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px; color: var(--platinum-light); line-height: 1; margin-bottom: 4px;
+    }
+    .d-metric-delta { font-size: 11px; color: var(--emerald); }
+    .d-metric-delta.dn { color: #f87171; }
+    .d-charts { display: grid; grid-template-columns: 1.6fr 1fr; gap: 12px; }
+    .d-chart {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px;
+    }
+    .d-chart-title { font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+    .bar-row { display: flex; align-items: flex-end; gap: 5px; height: 80px; margin-bottom: 6px; }
+    .bar {
+      flex: 1; border-radius: 4px 4px 0 0;
+      background: linear-gradient(180deg, var(--platinum) 0%, rgba(180,180,210,0.3) 100%);
+    }
+    .bar-lbl-row { display: flex; gap: 5px; }
+    .bar-lbl { flex: 1; font-size: 9px; color: var(--dim); text-align: center; font-family: 'JetBrains Mono', monospace; }
+    .d-legend { display: flex; flex-direction: column; gap: 8px; }
+    .d-legend-item { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--muted); }
+    .d-dot-lg { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+    .d-table { margin-top: 12px; }
+    .d-table-wrap {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden;
+    }
+    .d-thead { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; padding: 9px 14px; border-bottom: 1px solid var(--border); }
+    .d-thead span { font-size: 10px; color: var(--dim); letter-spacing: 0.08em; text-transform: uppercase; }
+    .d-trow { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; padding: 9px 14px; border-bottom: 1px solid rgba(255,255,255,0.02); font-size: 12px; color: var(--muted); }
+    .d-trow:last-child { border-bottom: none; }
+    .gem-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 500; }
+    .gb-s { background: rgba(59,130,246,0.18); color: #93c5fd; }
+    .gb-r { background: rgba(239,68,68,0.18); color: #fca5a5; }
+    .gb-e { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+    .gb-p { background: rgba(168,85,247,0.18); color: #d8b4fe; }
+    .st-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 500; }
+    .st-a { background: rgba(16,185,129,0.1); color: #6ee7b7; }
+    .st-r { background: rgba(251,191,36,0.1); color: #fcd34d; }
+    .st-s { background: rgba(239,68,68,0.1); color: #fca5a5; }
+
+    /* ─── INFOGRAPHICS ─── */
+    .infog-section { padding: 88px 24px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 52px; }
+    .stat-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px 24px; text-align: center;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .stat-card:hover { border-color: var(--border-bright); transform: translateY(-4px); }
+    .stat-card::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--platinum), transparent);
+      opacity: 0.3;
+    }
+    .stat-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 52px; font-weight: 500; line-height: 1;
+      color: var(--platinum-light); margin-bottom: 10px;
+    }
+    .stat-lbl { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .flow-wrap { margin-top: 60px; }
+    .flow-title {
+      text-align: center; font-size: 14px; color: var(--dim);
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 32px;
+    }
+    .flow {
+      display: flex; align-items: center; justify-content: center;
+      flex-wrap: wrap; gap: 0; max-width: 900px; margin: 0 auto;
+    }
+    .flow-step {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      flex: 1; min-width: 130px; padding: 0 6px;
+    }
+    .flow-ico {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: rgba(180,180,210,0.06); border: 1px solid var(--border-bright);
+      display: flex; align-items: center; justify-content: center; font-size: 22px;
+    }
+    .flow-step-name { font-size: 13px; font-weight: 500; color: var(--platinum); text-align: center; }
+    .flow-step-desc { font-size: 11px; color: var(--dim); text-align: center; }
+    .flow-arr { color: var(--dim); font-size: 20px; margin-bottom: 28px; flex-shrink: 0; }
+
+    /* ─── FEATURES ─── */
+    .feats-section { padding: 88px 24px; background: var(--surface); }
+    .feats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 52px; }
+    .feat-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px 24px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .feat-card:hover { border-color: var(--border-bright); transform: translateY(-3px); }
+    .feat-ico { font-size: 28px; margin-bottom: 16px; display: block; }
+    .feat-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; color: var(--platinum-light); }
+    .feat-card p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+    .feat-tag {
+      display: inline-block; margin-top: 12px;
+      background: rgba(16,185,129,0.08); color: var(--emerald);
+      border: 1px solid rgba(16,185,129,0.2);
+      padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 500;
+    }
+
+    /* ─── PRICING ─── */
+    .price-section { padding: 88px 24px; }
+    .price-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 52px; }
+    .price-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 36px 28px; position: relative;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .price-card:hover { transform: translateY(-4px); }
+    .price-card.feat {
+      background: linear-gradient(160deg, #0e1018, #080809);
+      border-color: var(--border-bright);
+    }
+    .price-card.feat::before {
+      content: 'MOST POPULAR';
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--platinum-light); color: var(--bg);
+      font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
+      padding: 3px 14px; border-radius: 20px; white-space: nowrap;
+    }
+    .price-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 600; color: var(--platinum-light); margin-bottom: 4px;
+    }
+    .price-desc { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+    .price-amount { margin-bottom: 6px; }
+    .price-currency { font-size: 20px; font-weight: 500; color: var(--platinum); vertical-align: top; margin-top: 8px; display: inline-block; }
+    .price-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 54px; font-weight: 500; color: var(--platinum-light); line-height: 1;
+    }
+    .price-period { font-size: 14px; color: var(--muted); }
+    .price-seats { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+    .price-seats strong { color: var(--platinum); }
+    hr.pd { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
+    .pf-list { display: flex; flex-direction: column; gap: 11px; margin-bottom: 28px; }
+    .pf-row { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--muted); }
+    .pf-ck { color: var(--platinum); font-size: 13px; flex-shrink: 0; }
+    .pf-ck.em { color: var(--emerald); }
+    .price-btn {
+      display: block; text-align: center;
+      padding: 13px; border-radius: 10px; text-decoration: none;
+      font-size: 14px; font-weight: 600; transition: all 0.2s;
+    }
+    .price-btn.solid { background: var(--platinum-light); color: var(--bg); }
+    .price-btn.solid:hover { box-shadow: 0 8px 24px rgba(200,200,220,0.18); }
+    .price-btn.ghost { border: 1px solid var(--border-bright); color: var(--platinum); }
+    .price-btn.ghost:hover { border-color: var(--platinum); background: rgba(180,180,210,0.06); }
+    .price-note { text-align: center; margin-top: 28px; font-size: 13px; color: var(--dim); }
+    .price-note strong { color: var(--muted); }
+
+    /* ─── WHITE LABEL CTA ─── */
+    .wl-section {
+      padding: 88px 24px;
+      background: var(--surface);
+    }
+    .wl-inner { max-width: 900px; margin: 0 auto; }
+    .wl-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin: 40px 0; }
+    .wl-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px 20px; text-align: center;
+    }
+    .wl-icon { font-size: 28px; margin-bottom: 12px; }
+    .wl-card h4 { font-size: 14px; font-weight: 600; color: var(--platinum-light); margin-bottom: 6px; }
+    .wl-card p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    /* ─── FINAL CTA ─── */
+    .final-section {
+      padding: 100px 24px; text-align: center; position: relative; overflow: hidden;
+    }
+    .final-section::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 700px; height: 500px;
+      background: radial-gradient(ellipse, rgba(16,185,129,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .final-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(34px, 5vw, 60px); font-weight: 700;
+      line-height: 1.1; max-width: 680px; margin: 0 auto 16px;
+      color: var(--platinum-light); position: relative;
+    }
+    .final-section h2 em { font-style: italic; color: #fff; }
+    .final-section p { color: var(--muted); font-size: 16px; max-width: 480px; margin: 0 auto 40px; position: relative; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border); padding: 28px 48px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--platinum); }
+    footer p { font-size: 12px; color: var(--dim); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 12px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--platinum); }
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .iris-wrap { grid-template-columns: 1fr; gap: 36px; padding: 60px 24px; }
+      .hiw-grid, .feats-grid, .price-grid { grid-template-columns: 1fr; }
+      .price-grid { max-width: 420px; margin-left: auto; margin-right: auto; }
+      .phones-grid { grid-template-columns: 1fr; }
+      .phone-outer { order: -1; }
+      .dash-body { grid-template-columns: 1fr; }
+      .dash-side { display: none; }
+      .d-metrics { grid-template-columns: repeat(2,1fr); }
+      .d-charts { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .wl-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+    }
+    @media(max-width: 600px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .flow { flex-direction: column; }
+      .flow-arr { transform: rotate(90deg); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="facet-mark">
+      <svg viewBox="0 0 28 28" fill="none">
+        <polygon points="14,2 24,8 24,20 14,26 4,20 4,8" fill="rgba(180,180,210,0.08)" stroke="rgba(180,180,210,0.5)" stroke-width="1.2"/>
+        <polygon points="14,2 19,8 14,8 9,8" fill="rgba(180,180,210,0.2)"/>
+        <polygon points="14,8 19,8 24,20 14,26" fill="rgba(180,180,210,0.06)"/>
+        <polygon points="14,8 9,8 4,20 14,26" fill="rgba(180,180,210,0.12)"/>
+        <line x1="14" y1="2" x2="14" y2="26" stroke="rgba(180,180,210,0.2)" stroke-width="0.5"/>
+      </svg>
+    </div>
+    Facet
+  </div>
+  <nav class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a href="#pricing" class="nav-cta">Get Started</a>
+</nav>
+
+<!-- MARQUEE -->
+<div style="padding-top:64px;">
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">Inventory Management <span class="m-dot"></span></span>
+      <span class="marquee-item">Client CRM <span class="m-dot"></span></span>
+      <span class="marquee-item">Invoice Automation <span class="m-dot"></span></span>
+      <span class="marquee-item">Dealer Networks <span class="m-dot"></span></span>
+      <span class="marquee-item">Media Library <span class="m-dot"></span></span>
+      <span class="marquee-item">Live Analytics <span class="m-dot"></span></span>
+      <span class="marquee-item">WhatsApp Native <span class="m-dot"></span></span>
+      <span class="marquee-item">24 / 7 Intelligence <span class="m-dot"></span></span>
+      <span class="marquee-item">Inventory Management <span class="m-dot"></span></span>
+      <span class="marquee-item">Client CRM <span class="m-dot"></span></span>
+      <span class="marquee-item">Invoice Automation <span class="m-dot"></span></span>
+      <span class="marquee-item">Dealer Networks <span class="m-dot"></span></span>
+      <span class="marquee-item">Media Library <span class="m-dot"></span></span>
+      <span class="marquee-item">Live Analytics <span class="m-dot"></span></span>
+      <span class="marquee-item">WhatsApp Native <span class="m-dot"></span></span>
+      <span class="marquee-item">24 / 7 Intelligence <span class="m-dot"></span></span>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-canvas">
+    <div class="hero-glow"></div>
+    <div class="crystal-bg"></div>
+    <svg class="float-crystal" width="80" height="90" viewBox="0 0 80 90">
+      <polygon points="40,4 68,22 68,68 40,86 12,68 12,22" fill="none" stroke="rgba(180,180,210,1)" stroke-width="1"/>
+    </svg>
+    <svg class="float-crystal" width="50" height="58" viewBox="0 0 50 58">
+      <polygon points="25,3 44,14 44,44 25,55 6,44 6,14" fill="none" stroke="rgba(16,185,129,1)" stroke-width="1"/>
+    </svg>
+    <svg class="float-crystal" width="64" height="72" viewBox="0 0 64 72">
+      <polygon points="32,3 56,18 56,54 32,69 8,54 8,18" fill="none" stroke="rgba(180,180,210,1)" stroke-width="1"/>
+    </svg>
+    <svg class="float-crystal" width="44" height="50" viewBox="0 0 44 50">
+      <polygon points="22,3 40,13 40,37 22,47 4,37 4,13" fill="none" stroke="rgba(59,130,246,1)" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <div class="hero-eyebrow">
+    <span class="hero-eyebrow-dot"></span>
+    AI Operating System for Gem Businesses
+  </div>
+
+  <h1>
+    Run your entire<br/>
+    <em>gem business</em><br/>
+    <span class="accent-line">from WhatsApp.</span>
+  </h1>
+
+  <p class="hero-sub">
+    Facet is the AI-powered operating system built exclusively for gem dealers, wholesalers, and traders. Powered by <strong style="color:var(--platinum)">Iris</strong> — your 24/7 gem intelligence companion.
+  </p>
+
+  <div class="hero-ctas">
+    <a href="#pricing" class="btn-primary">Start with Facet →</a>
+    <a href="#demo" class="btn-secondary">See Iris in Action</a>
+  </div>
+
+  <div class="hero-crystal">
+    <svg viewBox="0 0 140 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Main hexagon gem -->
+      <polygon points="70,8 118,36 118,124 70,152 22,124 22,36" fill="rgba(180,180,210,0.04)" stroke="rgba(180,180,210,0.35)" stroke-width="1"/>
+      <!-- Top facets -->
+      <polygon points="70,8 95,36 70,36 45,36" fill="rgba(180,180,210,0.12)" stroke="rgba(180,180,210,0.25)" stroke-width="0.5"/>
+      <!-- Upper side facets -->
+      <polygon points="70,36 95,36 118,80 70,80" fill="rgba(180,180,210,0.06)" stroke="rgba(180,180,210,0.2)" stroke-width="0.5"/>
+      <polygon points="70,36 45,36 22,80 70,80" fill="rgba(180,180,210,0.09)" stroke="rgba(180,180,210,0.2)" stroke-width="0.5"/>
+      <!-- Lower side facets -->
+      <polygon points="70,80 118,80 118,124 70,152" fill="rgba(16,185,129,0.05)" stroke="rgba(16,185,129,0.15)" stroke-width="0.5"/>
+      <polygon points="70,80 22,80 22,124 70,152" fill="rgba(59,130,246,0.05)" stroke="rgba(59,130,246,0.15)" stroke-width="0.5"/>
+      <!-- Center star lines -->
+      <line x1="70" y1="8" x2="70" y2="152" stroke="rgba(180,180,210,0.15)" stroke-width="0.5"/>
+      <line x1="22" y1="80" x2="118" y2="80" stroke="rgba(180,180,210,0.12)" stroke-width="0.5"/>
+      <line x1="22" y1="36" x2="118" y2="124" stroke="rgba(180,180,210,0.08)" stroke-width="0.5"/>
+      <line x1="118" y1="36" x2="22" y2="124" stroke="rgba(180,180,210,0.08)" stroke-width="0.5"/>
+      <!-- Table (center) -->
+      <polygon points="70,36 95,36 118,80 70,80 22,80 45,36" fill="rgba(180,180,210,0.07)" stroke="rgba(180,180,210,0.3)" stroke-width="0.8"/>
+    </svg>
+  </div>
+</section>
+
+<!-- LOGOS STRIP -->
+<div class="logos-strip">
+  <div class="logos-inner">
+    <div class="logos-label">Trusted by gem businesses across these markets</div>
+    <div class="logos-row">
+      <div class="logo-item">Bangkok</div>
+      <div class="logo-item">Dubai</div>
+      <div class="logo-item">Colombo</div>
+      <div class="logo-item">Jaipur</div>
+      <div class="logo-item">Hong Kong</div>
+      <div class="logo-item">Antwerp</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-label">The Problem</div>
+    <h2 class="section-title">Your gemstones are<br/>precious. Your admin <em>shouldn't be.</em></h2>
+    <p class="section-sub">Every gem dealer we spoke to runs the same spreadsheets, the same WhatsApp chaos, the same invoicing headaches. It doesn't have to be this way.</p>
+
+    <div class="pain-grid">
+      <div class="pain-card">
+        <span class="pain-icon">📊</span>
+        <span class="pain-tag">Outdated the moment it's saved</span>
+        <h3>Inventory in Spreadsheets</h3>
+        <p>Stock lists go stale before you've sent them. Clients ask about stones that are already sold or reserved.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">💬</span>
+        <span class="pain-tag">10 minutes per query</span>
+        <h3>Manual WhatsApp Queries</h3>
+        <p>"Show me unheated sapphires 2–5ct" — you're digging through spreadsheets instead of closing the sale.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">🧾</span>
+        <span class="pain-tag">No visibility, no tracking</span>
+        <h3>Invoicing in Word & Excel</h3>
+        <p>Outstanding payments discovered by accident. No reminders. No overview of what you're owed.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">📤</span>
+        <span class="pain-tag">No branding, no tracking</span>
+        <h3>Manual Dealer Distribution</h3>
+        <p>Copy-pasting stock lists to dealers with no branding, no tracking, no control over the narrative.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">📸</span>
+        <span class="pain-tag">Lost photos, lost deals</span>
+        <h3>Photo Chaos</h3>
+        <p>Same photos sent dozens of times. No central library. You can never find the right angle when you need it.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">📈</span>
+        <span class="pain-tag">No data, no direction</span>
+        <h3>Zero Business Intelligence</h3>
+        <p>Which gems move fastest? Who are your top buyers? What should you source next? You're guessing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IRIS -->
+<div class="iris-wrap">
+  <div class="iris-card">
+    <div class="iris-gem">🔮</div>
+    <div class="iris-name">Iris</div>
+    <div class="iris-title">Your AI Gem Intelligence Companion</div>
+    <p class="iris-desc">
+      Named after the iridescence — the play of light and colour inside a precious stone. Iris knows your entire inventory, every client relationship, and every outstanding invoice.
+    </p>
+    <div class="iris-tags">
+      <span class="iris-tag">Natural Language</span>
+      <span class="iris-tag">24 / 7</span>
+      <span class="iris-tag">WhatsApp Native</span>
+      <span class="iris-tag">Persistent Memory</span>
+      <span class="iris-tag">Multi-language</span>
+    </div>
+  </div>
+
+  <div class="iris-text">
+    <h2>Meet <em>Iris.</em><br/>The intelligence behind Facet.</h2>
+    <p>Iris is not a chatbot. She's a full business operating system that happens to live in WhatsApp — because that's where your business already runs.</p>
+    <p>Text her in plain language. She searches your inventory, reserves stones, raises invoices, distributes stock lists to dealers, and sends client confirmations — all in seconds.</p>
+    <div class="iris-quote">
+      "I don't just answer questions. I run the operations — so you can focus on what you do best: finding and selling exceptional gems."<br/>
+      <strong style="color:var(--platinum);font-style:normal;font-size:12px;margin-top:6px;display:block;">— Iris, Facet AI</strong>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section hiw-bg">
+  <div class="section-inner">
+    <div class="section-label">Process</div>
+    <h2 class="section-title">From signup to<br/><em>fully operational</em> in one week.</h2>
+    <p class="section-sub">No IT department. No technical setup. No new apps for your team. Facet fits into how you already work.</p>
+    <div class="hiw-grid">
+      <div class="hiw-card">
+        <div class="step-num">01</div>
+        <h3>We Import Everything</h3>
+        <p>Your inventory, client list, dealer network — all migrated in the first week. We handle it entirely. You review and go live.</p>
+      </div>
+      <div class="hiw-card">
+        <div class="step-num">02</div>
+        <h3>Text Iris in WhatsApp</h3>
+        <p>Your whole team works in WhatsApp as normal — but now Iris understands every message, acts on it, and responds instantly.</p>
+      </div>
+      <div class="hiw-card">
+        <div class="step-num">03</div>
+        <h3>See Everything Live</h3>
+        <p>The web dashboard shows your inventory, sales, invoices, and client activity in real time. Always know where your business stands.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHONE MOCKUPS -->
+<section class="phones-section" id="demo">
+  <div class="section-inner">
+    <div class="section-label">See It Live</div>
+    <h2 class="section-title" style="margin-bottom:48px;">Iris at work —<br/><em>in real conversations.</em></h2>
+
+    <div class="phones-grid">
+      <div class="phone-outer">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="wa-header">
+              <div class="wa-back">‹</div>
+              <div class="wa-avatar">🔮</div>
+              <div>
+                <div class="wa-name">Iris · Facet</div>
+                <div class="wa-status">online now</div>
+              </div>
+            </div>
+            <div class="wa-messages">
+              <div class="wa-msg user">show me unheated rubies under 3ct, no heat treatment, GRS or GIA cert only<span class="wt">9:41</span></div>
+              <div class="wa-msg iris">
+                <span class="iris-lbl">🔮 Iris</span>
+                Found 3 matching rubies:<br/><br/>
+                <b>1.</b> 1.84ct · Burma · No Heat<br/>GRS Cert · Pigeon Blood · $22,800 · Available<br/><br/>
+                <b>2.</b> 2.10ct · Mozambique · No Heat<br/>GIA Cert · Vivid Red · $14,400 · Available<br/><br/>
+                <b>3.</b> 2.78ct · Burma · No Heat<br/>GRS Cert · Vivid Red · $56,000 · Reserved
+                <span class="wt">9:41</span>
+              </div>
+              <div class="wa-msg user">send photos of stone 1 to Ahmed Dubai<span class="wt">9:42</span></div>
+              <div class="wa-msg iris">
+                <span class="iris-lbl">🔮 Iris</span>
+                Sending 5 photos to Ahmed (Dubai) now — all angles, GRS cert scan included. Want me to add a price note?
+                <span class="wt">9:42</span>
+              </div>
+              <div class="wa-msg user">yes quote $24,000 negotiable<span class="wt">9:43</span></div>
+              <div class="wa-msg iris">
+                <span class="iris-lbl">🔮 Iris</span>
+                ✅ Done. Sent to Ahmed with quote $24,000 (negotiable). I'll flag when he responds. 🔴
+                <span class="wt">9:43</span>
+              </div>
+            </div>
+            <div class="wa-input">
+              <div class="wa-input-field">Message Iris...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phones-copy">
+        <h3>Inventory Search<br/><em>in Plain Language</em></h3>
+        <p>No filters. No forms. Just text Iris exactly what you need — and she finds it, pulls the photos, and sends them to whoever needs them.</p>
+        <div class="flist">
+          <div class="fitem">
+            <div class="fi-ico">🔍</div>
+            <div class="fi-body">
+              <h4>Natural Language Search</h4>
+              <p>Any combination of gem type, treatment, cert, size, colour, price range — in any language.</p>
+            </div>
+          </div>
+          <div class="fitem">
+            <div class="fi-ico">📸</div>
+            <div class="fi-body">
+              <h4>Instant Photo Delivery</h4>
+              <p>Central photo library per stone. Iris sends the right photos to the right person, instantly.</p>
+            </div>
+          </div>
+          <div class="fitem">
+            <div class="fi-ico">💬</div>
+            <div class="fi-body">
+              <h4>Client-Aware Context</h4>
+              <p>Iris remembers every client's preferences, past purchases, and price sensitivities.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second mockup pair -->
+    <div class="phones-grid" style="margin-top:60px;">
+      <div class="phones-copy">
+        <h3>Invoicing &<br/><em>Dealer Networks</em></h3>
+        <p>One message to Iris creates a professional invoice, sends it to your client, and distributes a branded stock list to your entire dealer network.</p>
+        <div class="flist">
+          <div class="fitem">
+            <div class="fi-ico">🧾</div>
+            <div class="fi-body">
+              <h4>One-Text Invoice</h4>
+              <p>Name the client, stone, and price — Iris generates and sends a professional invoice in seconds.</p>
+            </div>
+          </div>
+          <div class="fitem">
+            <div class="fi-ico">🤝</div>
+            <div class="fi-body">
+              <h4>Branded Dealer Distribution</h4>
+              <p>Push your stock to any dealer with their branding auto-applied. Track views and responses.</p>
+            </div>
+          </div>
+          <div class="fitem">
+            <div class="fi-ico">💰</div>
+            <div class="fi-body">
+              <h4>Payment Tracking</h4>
+              <p>Outstanding invoices tracked automatically. Iris sends reminders so you never have to chase.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone-outer">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="wa-header">
+              <div class="wa-back">‹</div>
+              <div class="wa-avatar">🔮</div>
+              <div>
+                <div class="wa-name">Iris · Facet</div>
+                <div class="wa-status">online now</div>
+              </div>
+            </div>
+            <div class="wa-messages">
+              <div class="wa-msg user">invoice Ahmed Dubai for the 1.84ct Burma ruby at $23,500, 30 day payment terms<span class="wt">10:15</span></div>
+              <div class="wa-msg iris">
+                <span class="iris-lbl">🔮 Iris</span>
+                ✅ Invoice #F-2024-0193 created<br/><br/>
+                Client: Ahmed Al-Mansoori (Dubai)<br/>Stone: 1.84ct Burma Ruby, No Heat<br/>GRS Certified<br/>Total: $23,500 USD<br/>Payment: Net 30 days<br/><br/>
+                Send to ahmed@example.ae?
+                <span class="wt">10:15</span>
+              </div>
+              <div class="wa-msg user">send it. also push today's new arrivals to all dealers<span class="wt">10:16</span></div>
+              <div class="wa-msg iris">
+                <span class="iris-lbl">🔮 Iris</span>
+                📧 Invoice sent to Ahmed.<br/><br/>
+                Sending new arrivals (18 stones) to 9 active dealers now — each list has their branding applied. ✅
+                <span class="wt">10:16</span>
+              </div>
+              <div class="wa-msg user">what's my outstanding receivables total right now<span class="wt">10:18</span></div>
+              <div class="wa-msg iris">
+                <span class="iris-lbl">🔮 Iris</span>
+                Outstanding receivables: <b>$84,200</b><br/>6 invoices · oldest is 18 days<br/>Sending reminders to 2 clients now 📩
+                <span class="wt">10:18</span>
+              </div>
+            </div>
+            <div class="wa-input">
+              <div class="wa-input-field">Message Iris...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+<section class="dash-section">
+  <div class="section-inner">
+    <div class="section-label">Dashboard</div>
+    <h2 class="section-title">Every stone.<br/>Every client. <em>One screen.</em></h2>
+    <p class="section-sub">Your web dashboard shows everything — inventory, revenue, invoices, and client activity — updating in real time as Iris works.</p>
+
+    <div class="dash-frame">
+      <div class="dash-bar">
+        <div class="d-dots">
+          <div class="d-dot r"></div>
+          <div class="d-dot y"></div>
+          <div class="d-dot g"></div>
+        </div>
+        <div class="d-url">app.facetgems.com/dashboard</div>
+        <div class="d-live">● LIVE</div>
+      </div>
+      <div class="dash-body">
+        <div class="dash-side">
+          <div class="d-logo">◇ Facet</div>
+          <div class="d-nav on"><span class="d-nav-ico">📊</span> Overview</div>
+          <div class="d-nav"><span class="d-nav-ico">💎</span> Inventory</div>
+          <div class="d-nav"><span class="d-nav-ico">👥</span> Clients</div>
+          <div class="d-nav"><span class="d-nav-ico">🧾</span> Invoices</div>
+          <div class="d-nav"><span class="d-nav-ico">🤝</span> Dealers</div>
+          <div class="d-nav"><span class="d-nav-ico">📸</span> Media</div>
+          <div class="d-nav"><span class="d-nav-ico">📈</span> Analytics</div>
+        </div>
+        <div class="dash-main">
+          <div class="d-greeting">Good morning — <span style="color:var(--platinum);font-style:italic;">3 queries from clients awaiting response.</span></div>
+          <div class="d-metrics">
+            <div class="d-metric">
+              <div class="d-metric-lbl">In Stock</div>
+              <div class="d-metric-val">1,204</div>
+              <div class="d-metric-delta">↑ 34 added today</div>
+            </div>
+            <div class="d-metric">
+              <div class="d-metric-lbl">Revenue MTD</div>
+              <div class="d-metric-val">$342K</div>
+              <div class="d-metric-delta">↑ 22% vs last month</div>
+            </div>
+            <div class="d-metric">
+              <div class="d-metric-lbl">Receivables</div>
+              <div class="d-metric-val">$84K</div>
+              <div class="d-metric-delta dn">6 overdue</div>
+            </div>
+            <div class="d-metric">
+              <div class="d-metric-lbl">Active Clients</div>
+              <div class="d-metric-val">318</div>
+              <div class="d-metric-delta">↑ 11 this month</div>
+            </div>
+          </div>
+          <div class="d-charts">
+            <div class="d-chart">
+              <div class="d-chart-title">Revenue — Last 6 Months</div>
+              <div class="bar-row">
+                <div class="bar" style="height:52%"></div>
+                <div class="bar" style="height:65%"></div>
+                <div class="bar" style="height:44%"></div>
+                <div class="bar" style="height:78%"></div>
+                <div class="bar" style="height:60%"></div>
+                <div class="bar" style="height:100%"></div>
+              </div>
+              <div class="bar-lbl-row">
+                <div class="bar-lbl">OCT</div>
+                <div class="bar-lbl">NOV</div>
+                <div class="bar-lbl">DEC</div>
+                <div class="bar-lbl">JAN</div>
+                <div class="bar-lbl">FEB</div>
+                <div class="bar-lbl">MAR</div>
+              </div>
+            </div>
+            <div class="d-chart">
+              <div class="d-chart-title">Stock by Type</div>
+              <div class="d-legend">
+                <div class="d-legend-item"><div class="d-dot-lg" style="background:#3b82f6"></div> Sapphire · 38%</div>
+                <div class="d-legend-item"><div class="d-dot-lg" style="background:#ef4444"></div> Ruby · 22%</div>
+                <div class="d-legend-item"><div class="d-dot-lg" style="background:#10b981"></div> Emerald · 14%</div>
+                <div class="d-legend-item"><div class="d-dot-lg" style="background:#a855f7"></div> Spinel · 18%</div>
+                <div class="d-legend-item"><div class="d-dot-lg" style="background:#f59e0b"></div> Other · 8%</div>
+              </div>
+            </div>
+          </div>
+          <div class="d-table">
+            <div class="d-table-wrap">
+              <div class="d-thead">
+                <span>Stone</span><span>Weight</span><span>Price</span><span>Status</span>
+              </div>
+              <div class="d-trow">
+                <div><span class="gem-badge gb-r">Ruby</span> · Burma No Heat</div>
+                <div>1.84ct</div>
+                <div style="color:var(--platinum);font-family:'JetBrains Mono',monospace">$23,500</div>
+                <div><span class="st-badge st-r">Reserved</span></div>
+              </div>
+              <div class="d-trow">
+                <div><span class="gem-badge gb-s">Sapphire</span> · Ceylon Unheated</div>
+                <div>3.20ct</div>
+                <div style="color:var(--platinum);font-family:'JetBrains Mono',monospace">$28,000</div>
+                <div><span class="st-badge st-a">Available</span></div>
+              </div>
+              <div class="d-trow">
+                <div><span class="gem-badge gb-e">Emerald</span> · Colombian</div>
+                <div>2.40ct</div>
+                <div style="color:var(--platinum);font-family:'JetBrains Mono',monospace">$19,200</div>
+                <div><span class="st-badge st-s">Sold</span></div>
+              </div>
+              <div class="d-trow">
+                <div><span class="gem-badge gb-p">Spinel</span> · Mahenge</div>
+                <div>1.65ct</div>
+                <div style="color:var(--platinum);font-family:'JetBrains Mono',monospace">$11,400</div>
+                <div><span class="st-badge st-a">Available</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFOGRAPHICS -->
+<section class="infog-section">
+  <div class="section-inner">
+    <div class="section-label">Impact</div>
+    <h2 class="section-title">Numbers that<br/><em>speak for themselves.</em></h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">90%</div>
+        <div class="stat-lbl">Reduction in time spent<br/>answering inventory queries</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3s</div>
+        <div class="stat-lbl">Average Iris response time<br/>for any inventory search</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">24/7</div>
+        <div class="stat-lbl">Iris operates around the clock —<br/>across all time zones</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">∞</div>
+        <div class="stat-lbl">Stones, clients, photos,<br/>invoices — no limits</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">0</div>
+        <div class="stat-lbl">New apps your team<br/>needs to learn</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">7d</div>
+        <div class="stat-lbl">From contract signed<br/>to fully live</div>
+      </div>
+    </div>
+
+    <div class="flow-wrap">
+      <div class="flow-title">How a single WhatsApp message moves your entire business</div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-ico">💬</div>
+          <div class="flow-step-name">Text Iris</div>
+          <div class="flow-step-desc">Plain WhatsApp</div>
+        </div>
+        <div class="flow-arr">→</div>
+        <div class="flow-step">
+          <div class="flow-ico">🔮</div>
+          <div class="flow-step-name">Iris Acts</div>
+          <div class="flow-step-desc">Instant intent parsing</div>
+        </div>
+        <div class="flow-arr">→</div>
+        <div class="flow-step">
+          <div class="flow-ico">⚡</div>
+          <div class="flow-step-name">Done</div>
+          <div class="flow-step-desc">Invoice, search, send</div>
+        </div>
+        <div class="flow-arr">→</div>
+        <div class="flow-step">
+          <div class="flow-ico">📊</div>
+          <div class="flow-step-name">Dashboard Syncs</div>
+          <div class="flow-step-desc">Real-time update</div>
+        </div>
+        <div class="flow-arr">→</div>
+        <div class="flow-step">
+          <div class="flow-ico">✅</div>
+          <div class="flow-step-name">Confirmed</div>
+          <div class="flow-step-desc">Back to WhatsApp</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="feats-section" id="features">
+  <div class="section-inner">
+    <div class="section-label">Everything Included</div>
+    <h2 class="section-title">Every tool.<br/><em>One subscription.</em></h2>
+    <div class="feats-grid">
+      <div class="feat-card">
+        <span class="feat-ico">💎</span>
+        <h3>Inventory Management</h3>
+        <p>Complete gem database — weight, colour, treatment, cert, photos, provenance. Searchable via WhatsApp or dashboard in seconds.</p>
+        <span class="feat-tag">Natural Language</span>
+      </div>
+      <div class="feat-card">
+        <span class="feat-ico">👥</span>
+        <h3>Client CRM</h3>
+        <p>Every client's preferences, purchase history, and budget stored permanently. Iris surfaces the right stones for the right buyer automatically.</p>
+        <span class="feat-tag">Persistent Memory</span>
+      </div>
+      <div class="feat-card">
+        <span class="feat-ico">🧾</span>
+        <h3>Invoicing & Payments</h3>
+        <p>Professional invoices generated in one message. Payment tracking, reminders, and a full receivables overview — all automatic.</p>
+        <span class="feat-tag">One-Text Invoice</span>
+      </div>
+      <div class="feat-card">
+        <span class="feat-ico">🤝</span>
+        <h3>Dealer Network</h3>
+        <p>Distribute branded stock lists to your entire dealer network instantly. Each dealer gets their own branding. Track every view and response.</p>
+        <span class="feat-tag">Auto-Branded</span>
+      </div>
+      <div class="feat-card">
+        <span class="feat-ico">📸</span>
+        <h3>Media Library</h3>
+        <p>Unlimited centralised photo storage per stone. All angles, all certs. Iris delivers the right photos to any client or dealer on demand.</p>
+        <span class="feat-tag">Unlimited Storage</span>
+      </div>
+      <div class="feat-card">
+        <span class="feat-ico">📈</span>
+        <h3>Analytics & Reports</h3>
+        <p>Revenue by gem type, client, dealer, and period. See what's selling, what's sitting, and what to source at your next trade show.</p>
+        <span class="feat-tag">Live Dashboard</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHITE LABEL -->
+<section class="wl-section">
+  <div class="wl-inner">
+    <div class="section-label">White Label</div>
+    <h2 class="section-title">Your brand.<br/><em>Your product.</em></h2>
+    <p class="section-sub" style="margin-bottom:0;">Facet is available as a fully white-labelled solution — your brand, your name, your mascot. Built and deployed exclusively for your business.</p>
+
+    <div class="wl-grid">
+      <div class="wl-card">
+        <div class="wl-icon">🎨</div>
+        <h4>Your Brand Identity</h4>
+        <p>Custom name, colours, AI companion name, and domain. Fully yours.</p>
+      </div>
+      <div class="wl-card">
+        <div class="wl-icon">🔒</div>
+        <h4>Private Deployment</h4>
+        <p>Your data on your infrastructure. No shared environment with competitors.</p>
+      </div>
+      <div class="wl-card">
+        <div class="wl-icon">🌐</div>
+        <h4>Multi-Language</h4>
+        <p>Iris speaks the language of your clients — English, Arabic, Thai, Hindi, Chinese.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="price-section" id="pricing">
+  <div class="section-inner">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title">Simple.<br/><em>No surprises.</em></h2>
+    <p class="section-sub">One platform. One price. No per-feature upsells. Scales cleanly as your team grows.</p>
+
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-name">Onboarding</div>
+        <div class="price-desc">Get fully live in one week</div>
+        <div class="price-amount">
+          <span class="price-currency">$</span>
+          <span class="price-num">1,000</span>
+        </div>
+        <div class="price-seats">One-time · <strong>billed at start</strong></div>
+        <hr class="pd" />
+        <div class="pf-list">
+          <div class="pf-row"><span class="pf-ck">◇</span> Full inventory import</div>
+          <div class="pf-row"><span class="pf-ck">◇</span> Client & dealer migration</div>
+          <div class="pf-row"><span class="pf-ck">◇</span> WhatsApp integration setup</div>
+          <div class="pf-row"><span class="pf-ck">◇</span> Team onboarding & training</div>
+          <div class="pf-row"><span class="pf-ck">◇</span> Live in 7 days, guaranteed</div>
+        </div>
+        <a href="#contact" class="price-btn ghost">Get Started</a>
+      </div>
+
+      <div class="price-card feat">
+        <div class="price-name">Facet Pro</div>
+        <div class="price-desc">Full AI operating system</div>
+        <div class="price-amount">
+          <span class="price-currency">$</span>
+          <span class="price-num">1,000</span>
+          <span class="price-period">/month</span>
+        </div>
+        <div class="price-seats">Includes <strong>10 seats</strong> · $50/seat above 10</div>
+        <hr class="pd" />
+        <div class="pf-list">
+          <div class="pf-row"><span class="pf-ck em">◆</span> Iris AI — unlimited queries</div>
+          <div class="pf-row"><span class="pf-ck em">◆</span> Full inventory management</div>
+          <div class="pf-row"><span class="pf-ck em">◆</span> Client CRM with memory</div>
+          <div class="pf-row"><span class="pf-ck em">◆</span> Invoice generation & tracking</div>
+          <div class="pf-row"><span class="pf-ck em">◆</span> Dealer distribution network</div>
+          <div class="pf-row"><span class="pf-ck em">◆</span> Unlimited media library</div>
+          <div class="pf-row"><span class="pf-ck em">◆</span> Live web dashboard</div>
+          <div class="pf-row"><span class="pf-ck em">◆</span> Analytics & reporting</div>
+          <div class="pf-row"><span class="pf-ck em">◆</span> Priority WhatsApp support</div>
+        </div>
+        <a href="#contact" class="price-btn solid">Start with Iris →</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-name">Extra Seats</div>
+        <div class="price-desc">Scale your team</div>
+        <div class="price-amount">
+          <span class="price-currency">$</span>
+          <span class="price-num">50</span>
+          <span class="price-period">/seat/mo</span>
+        </div>
+        <div class="price-seats">For every seat <strong>above 10</strong></div>
+        <hr class="pd" />
+        <div class="pf-list">
+          <div class="pf-row"><span class="pf-ck">◇</span> Full Iris access</div>
+          <div class="pf-row"><span class="pf-ck">◇</span> Individual WhatsApp login</div>
+          <div class="pf-row"><span class="pf-ck">◇</span> Role-based permissions</div>
+          <div class="pf-row"><span class="pf-ck">◇</span> Dashboard access</div>
+          <div class="pf-row"><span class="pf-ck">◇</span> Add or remove any time</div>
+        </div>
+        <a href="#contact" class="price-btn ghost">Talk to Us</a>
+      </div>
+    </div>
+
+    <p class="price-note">All subscriptions require a <strong>$1,000 one-time onboarding fee</strong> to get you fully set up and live.</p>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-section" id="contact">
+  <h2>Ready to meet <em>Iris?</em></h2>
+  <p>Join gem businesses across Bangkok, Dubai, Colombo and beyond who run their operations through Facet.</p>
+  <div class="hero-ctas" style="justify-content:center;">
+    <a href="https://wa.me/60123456789?text=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20Facet" class="btn-primary" target="_blank">💬 Message Us on WhatsApp</a>
+    <a href="mailto:hello@metastart.in" class="btn-secondary">Send an Email</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">◇ Facet</div>
+  <p>© 2026 Facet by Metastart · The AI Operating System for Gem Businesses</p>
+  <div class="footer-links">
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="mailto:hello@metastart.in">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
