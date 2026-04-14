@@ -540,56 +540,6 @@
       padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 500;
     }
 
-    /* ─── PRICING ─── */
-    .price-section { padding: 88px 24px; }
-    .price-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; margin-top: 52px; max-width: 780px; margin-left: auto; margin-right: auto; }
-    .price-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 20px; padding: 36px 28px; position: relative;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .price-card:hover { transform: translateY(-4px); }
-    .price-card.feat {
-      background: linear-gradient(160deg, #0e1018, #080809);
-      border-color: var(--border-bright);
-    }
-    .price-card.feat::before {
-      content: 'MOST POPULAR';
-      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-      background: var(--platinum-light); color: var(--bg);
-      font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
-      padding: 3px 14px; border-radius: 20px; white-space: nowrap;
-    }
-    .price-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px; font-weight: 600; color: var(--platinum-light); margin-bottom: 4px;
-    }
-    .price-desc { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
-    .price-amount { margin-bottom: 6px; }
-    .price-currency { font-size: 20px; font-weight: 500; color: var(--platinum); vertical-align: top; margin-top: 8px; display: inline-block; }
-    .price-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 54px; font-weight: 500; color: var(--platinum-light); line-height: 1;
-    }
-    .price-period { font-size: 14px; color: var(--muted); }
-    .price-seats { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
-    .price-seats strong { color: var(--platinum); }
-    hr.pd { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
-    .pf-list { display: flex; flex-direction: column; gap: 11px; margin-bottom: 28px; }
-    .pf-row { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--muted); }
-    .pf-ck { color: var(--platinum); font-size: 13px; flex-shrink: 0; }
-    .pf-ck.em { color: var(--emerald); }
-    .price-btn {
-      display: block; text-align: center;
-      padding: 13px; border-radius: 10px; text-decoration: none;
-      font-size: 14px; font-weight: 600; transition: all 0.2s;
-    }
-    .price-btn.solid { background: var(--platinum-light); color: var(--bg); }
-    .price-btn.solid:hover { box-shadow: 0 8px 24px rgba(200,200,220,0.18); }
-    .price-btn.ghost { border: 1px solid var(--border-bright); color: var(--platinum); }
-    .price-btn.ghost:hover { border-color: var(--platinum); background: rgba(180,180,210,0.06); }
-    .price-note { text-align: center; margin-top: 28px; font-size: 13px; color: var(--dim); }
-    .price-note strong { color: var(--muted); }
 
     /* ─── WHITE LABEL CTA ─── */
     .wl-section {
@@ -642,8 +592,7 @@
       nav { padding: 0 20px; }
       .nav-links { display: none; }
       .iris-wrap { grid-template-columns: 1fr; gap: 36px; padding: 60px 24px; }
-      .hiw-grid, .feats-grid, .price-grid { grid-template-columns: 1fr; }
-      .price-grid { max-width: 420px; margin-left: auto; margin-right: auto; }
+      .hiw-grid, .feats-grid { grid-template-columns: 1fr; }
       .phones-grid { grid-template-columns: 1fr; }
       .phone-outer { order: -1; }
       .dash-body { grid-template-columns: 1fr; }
@@ -679,10 +628,9 @@
   </div>
   <nav class="nav-links">
     <a href="#features">Features</a>
-    <a href="#pricing">Pricing</a>
     <a href="#contact">Contact</a>
   </nav>
-  <a href="#pricing" class="nav-cta">Get Started</a>
+  <a href="#contact" class="nav-cta">Get Started</a>
 </nav>
 
 <!-- MARQUEE -->
@@ -744,7 +692,7 @@
   </p>
 
   <div class="hero-ctas">
-    <a href="#pricing" class="btn-primary">Start with Facet →</a>
+    <a href="#contact" class="btn-primary">Start with Facet →</a>
     <a href="#demo" class="btn-secondary">See Iris in Action</a>
   </div>
 
@@ -1304,61 +1252,6 @@
   </div>
 </section>
 
-<!-- PRICING -->
-<section class="price-section" id="pricing">
-  <div class="section-inner">
-    <div class="section-label">Pricing</div>
-    <h2 class="section-title">Simple.<br/><em>No surprises.</em></h2>
-    <p class="section-sub">One platform. One price. No per-feature upsells. Scales cleanly as your team grows.</p>
-
-    <div class="price-grid">
-      <div class="price-card feat">
-        <div class="price-name">Facet Pro</div>
-        <div class="price-desc">Full AI operating system</div>
-        <div class="price-amount">
-          <span class="price-currency">$</span>
-          <span class="price-num">1,000</span>
-          <span class="price-period">/month</span>
-        </div>
-        <div class="price-seats">Includes <strong>10 seats</strong> · $50/seat above 10</div>
-        <hr class="pd" />
-        <div class="pf-list">
-          <div class="pf-row"><span class="pf-ck em">◆</span> Iris AI — unlimited queries</div>
-          <div class="pf-row"><span class="pf-ck em">◆</span> Full inventory management</div>
-          <div class="pf-row"><span class="pf-ck em">◆</span> Client CRM with memory</div>
-          <div class="pf-row"><span class="pf-ck em">◆</span> Invoice generation & tracking</div>
-          <div class="pf-row"><span class="pf-ck em">◆</span> Dealer distribution network</div>
-          <div class="pf-row"><span class="pf-ck em">◆</span> Unlimited media library</div>
-          <div class="pf-row"><span class="pf-ck em">◆</span> Live web dashboard</div>
-          <div class="pf-row"><span class="pf-ck em">◆</span> Analytics & reporting</div>
-          <div class="pf-row"><span class="pf-ck em">◆</span> Priority WhatsApp support</div>
-        </div>
-        <a href="#contact" class="price-btn solid">Start with Iris →</a>
-      </div>
-
-      <div class="price-card">
-        <div class="price-name">Extra Seats</div>
-        <div class="price-desc">Scale your team</div>
-        <div class="price-amount">
-          <span class="price-currency">$</span>
-          <span class="price-num">50</span>
-          <span class="price-period">/seat/mo</span>
-        </div>
-        <div class="price-seats">For every seat <strong>above 10</strong></div>
-        <hr class="pd" />
-        <div class="pf-list">
-          <div class="pf-row"><span class="pf-ck">◇</span> Full Iris access</div>
-          <div class="pf-row"><span class="pf-ck">◇</span> Individual WhatsApp login</div>
-          <div class="pf-row"><span class="pf-ck">◇</span> Role-based permissions</div>
-          <div class="pf-row"><span class="pf-ck">◇</span> Dashboard access</div>
-          <div class="pf-row"><span class="pf-ck">◇</span> Add or remove any time</div>
-        </div>
-        <a href="#contact" class="price-btn ghost">Talk to Us</a>
-      </div>
-    </div>
-
-  </div>
-</section>
 
 <!-- FINAL CTA -->
 <section class="final-section" id="contact">
@@ -1376,7 +1269,6 @@
   <p>© 2026 Facet by Metastart · The AI Operating System for Gem Businesses</p>
   <div class="footer-links">
     <a href="#features">Features</a>
-    <a href="#pricing">Pricing</a>
     <a href="mailto:hello@metastart.in">Contact</a>
   </div>
 </footer>
